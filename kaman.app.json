@@ -1,54 +1,27 @@
 {
   "name": "Canonical Model Mapper",
   "agents": {
-    "profiler": "102033a4-5b09-5918-bb95-e4a2ab585758",
-    "model_reader": "fdb0e0cf-4b31-52cf-a789-1c04aa44e067",
-    "publisher": "a889b336-4705-5560-83b9-0adfea6aa621"
+    "profiler": "79d6e016-a06c-5624-9e89-89505b0fc18f",
+    "model_reader": "d9c1f40b-d4bb-5994-bdf2-437ecbb922a1",
+    "publisher": "c8cb70f1-fb65-571a-8315-f9e5210b23de"
   },
   "workflows": {
-    "flow": "7084088f-d0f1-55d1-b8e8-3bd28ee3b9d2"
+    "flow": "bdb1b771-c643-5479-a387-6740af0b914d"
+  },
+  "scenarios": {
+    "desk": "2ba6ba55-2f7e-5ec6-9290-4e8122781b0f"
   },
   "ui": {
     "title": "Canonical Model Mapper",
     "tagline": "Maps a new source system's table onto your canonical data model: profiles the data, proposes every field's mapping with a confidence and a reason, checks required-field coverage, and publishes only what a data steward approves.",
-    "actions": [
-      {
-        "id": "run",
-        "label": "Run: Map a source to the canonical model",
-        "description": "Point Kaman at a new source system's table. It profiles the data, proposes a field-by-field mapping to your canonical model with confidence, checks coverage of required fields, and publishes the mapping only after a data steward approves it.",
-        "kind": "workflow",
-        "target": "flow",
-        "inputs": [
-          {
-            "name": "source",
-            "label": "Source",
-            "kind": "text",
-            "default": "legacy_crm.customers"
-          },
-          {
-            "name": "target_entity",
-            "label": "Target entity",
-            "kind": "text",
-            "default": "Customer"
-          }
-        ]
-      },
-      {
-        "id": "ask",
-        "label": "Ask the Source Profiler",
-        "description": "Profiles a source table in the database.",
-        "kind": "agent",
-        "target": "profiler",
-        "prompt": "{{question}}",
-        "inputs": [
-          {
-            "name": "question",
-            "label": "Your question",
-            "kind": "text",
-            "default": "Profile legacy_crm.customers."
-          }
-        ]
-      }
-    ]
+    "run": "Run: Map a source to the canonical model",
+    "chat": {
+      "agent": "profiler",
+      "title": "Ask the Source Profiler",
+      "suggestions": [
+        "Profile source legacy_crm.customers. describe_table and the profiling queries returned columns: cust_no (text, 0% null), fname, lname, email_addr (2% null), dob (text 'DD/MM/YYYY'). Reply as instructed.",
+        "Profile legacy_crm.customers."
+      ]
+    }
   }
 }
